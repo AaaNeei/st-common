@@ -33,22 +33,22 @@
             <property name="enableSubPackages" value="false" />
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.st.studytour.${entity.name}.dao" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.st.studytour.${entity.name}.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table tableName="${table1.name}" domainObjectName="${table1.domain.name}"
+        <table tableName="${table1.name}" domainObjectName="${table1.domain.name}Entity"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
-        <table tableName="${table2.name}" domainObjectName="${table2.domain.name}"
+        <table tableName="${table2.name}" domainObjectName="${table2.domain.name}Entity"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
-        <table tableName="${table3.name}" domainObjectName="${table3.domain.name}"
+        <table tableName="${table3.name}" domainObjectName="${table3.domain.name}Entity"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

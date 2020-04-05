@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.st.studytour.stmember.mapper.MemberInformationEntityMapper">
+  <resultMap id="BaseResultMap" type="com.st.studytour.stmember.entity.MemberInformationEntity">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="is_deleted" jdbcType="VARCHAR" property="isDeleted" />
+    <result column="st_user_id" jdbcType="BIGINT" property="stUserId" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="ID_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="unit_code" jdbcType="VARCHAR" property="unitCode" />
+    <result column="profession_code" jdbcType="VARCHAR" property="professionCode" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.st.studytour.stmember.entity.MemberInformationEntityWithBLOBs">
+    <result column="unit_address" jdbcType="LONGVARCHAR" property="unitAddress" />
+    <result column="hobby" jdbcType="LONGVARCHAR" property="hobby" />
+    <result column="aphorism" jdbcType="LONGVARCHAR" property="aphorism" />
+    <result column="ext" jdbcType="LONGVARCHAR" property="ext" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME, is_deleted, st_user_id, real_name, 
+    ID_number, unit_code, profession_code
+  </sql>
+  <sql id="Blob_Column_List">
+    unit_address, hobby, aphorism, ext
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from st_member_information
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from st_member_information
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.st.studytour.stmember.entity.MemberInformationEntityWithBLOBs">
+    insert into st_member_information (ID, CREATED_BY, CREATED_TIME, 
+      UPDATED_BY, UPDATED_TIME, is_deleted, 
+      st_user_id, real_name, ID_number, 
+      unit_code, profession_code, unit_address, 
+      hobby, aphorism, ext
+      )
+    values (#{id,jdbcType=BIGINT}, #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=VARCHAR}, 
+      #{stUserId,jdbcType=BIGINT}, #{realName,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, 
+      #{unitCode,jdbcType=VARCHAR}, #{professionCode,jdbcType=VARCHAR}, #{unitAddress,jdbcType=LONGVARCHAR}, 
+      #{hobby,jdbcType=LONGVARCHAR}, #{aphorism,jdbcType=LONGVARCHAR}, #{ext,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.st.studytour.stmember.entity.MemberInformationEntityWithBLOBs">
+    insert into st_member_information
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="stUserId != null">
+        st_user_id,
+      </if>
+      <if test="realName != null">
+        real_name,
+      </if>
+      <if test="idNumber != null">
+        ID_number,
+      </if>
+      <if test="unitCode != null">
+        unit_code,
+      </if>
+      <if test="professionCode != null">
+        profession_code,
+      </if>
+      <if test="unitAddress != null">
+        unit_address,
+      </if>
+      <if test="hobby != null">
+        hobby,
+      </if>
+      <if test="aphorism != null">
+        aphorism,
+      </if>
+      <if test="ext != null">
+        ext,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=VARCHAR},
+      </if>
+      <if test="stUserId != null">
+        #{stUserId,jdbcType=BIGINT},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCode != null">
+        #{unitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="professionCode != null">
+        #{professionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitAddress != null">
+        #{unitAddress,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="hobby != null">
+        #{hobby,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="aphorism != null">
+        #{aphorism,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ext != null">
+        #{ext,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.st.studytour.stmember.entity.MemberInformationEntityWithBLOBs">
+    update st_member_information
+    <set>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=VARCHAR},
+      </if>
+      <if test="stUserId != null">
+        st_user_id = #{stUserId,jdbcType=BIGINT},
+      </if>
+      <if test="realName != null">
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        ID_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCode != null">
+        unit_code = #{unitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="professionCode != null">
+        profession_code = #{professionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitAddress != null">
+        unit_address = #{unitAddress,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="hobby != null">
+        hobby = #{hobby,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="aphorism != null">
+        aphorism = #{aphorism,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ext != null">
+        ext = #{ext,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.st.studytour.stmember.entity.MemberInformationEntityWithBLOBs">
+    update st_member_information
+    set CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=VARCHAR},
+      st_user_id = #{stUserId,jdbcType=BIGINT},
+      real_name = #{realName,jdbcType=VARCHAR},
+      ID_number = #{idNumber,jdbcType=VARCHAR},
+      unit_code = #{unitCode,jdbcType=VARCHAR},
+      profession_code = #{professionCode,jdbcType=VARCHAR},
+      unit_address = #{unitAddress,jdbcType=LONGVARCHAR},
+      hobby = #{hobby,jdbcType=LONGVARCHAR},
+      aphorism = #{aphorism,jdbcType=LONGVARCHAR},
+      ext = #{ext,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.st.studytour.stmember.entity.MemberInformationEntity">
+    update st_member_information
+    set CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=VARCHAR},
+      st_user_id = #{stUserId,jdbcType=BIGINT},
+      real_name = #{realName,jdbcType=VARCHAR},
+      ID_number = #{idNumber,jdbcType=VARCHAR},
+      unit_code = #{unitCode,jdbcType=VARCHAR},
+      profession_code = #{professionCode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
